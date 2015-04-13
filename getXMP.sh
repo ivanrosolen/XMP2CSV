@@ -2,7 +2,7 @@
 
 touch csv_ninja.csv
 
-find . -name '*.psd' | while read file; do
+find -E . -regex '.*\.(psd|gif|png|jpeg)' | while read file; do
 
     xmp=$(exiftool -xmp -b "${file}" | egrep 'xwnv:(.+)=(.+)"$' | cut -d : -f 2- | tr "\n" ";")
 
